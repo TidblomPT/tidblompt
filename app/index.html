@@ -1,0 +1,154 @@
+<!doctype html>
+<!--
+  Länken i TikTok-bion: https://tidblompt.com/app/
+
+  TikToks egen webbläsare kan inte öppna App Store. Sidan gör därför så här:
+  - Vanlig webbläsare på iPhone: skickar vidare till App Store direkt.
+  - TikTok: försöker öppna Safari (x-safari-https, iOS 17 och senare), och
+    visar en knapp och instruktionen "⋯ uppe till höger, Öppna i webbläsare"
+    om inget händer.
+  - Annat än iPhone: säger att appen finns för iPhone, med länk.
+
+  ?c=  blir App Store-kampanjen (ct), t.ex. ?c=tiktok_sv. Standard: bio.
+  ?lang=sv|en  väljer språk. Annars telefonens språk.
+
+  Ingen spårning, inga kakor, inga externa resurser.
+-->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-itunes-app" content="app-id=6761179177">
+<title>Forteva</title>
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg1: #02040b; --bg2: #0a3285; --ink: #ffffff; --muted: #b9c3e0; --accent: #3b5be6; --card: rgba(255,255,255,.08); --line: rgba(255,255,255,.16); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center;
+         background: linear-gradient(180deg, var(--bg1) 0%, #04122e 45%, var(--bg2) 100%); color: var(--ink);
+         font: 17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom)); text-align: center; }
+  main { width: 100%; max-width: 400px; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; display: block; margin: 0 auto 18px; box-shadow: 0 12px 32px rgba(0,0,0,.45); }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; font-weight: 800; letter-spacing: -.01em; }
+  p { margin: 0 0 22px; color: var(--muted); }
+  .btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 56px; border-radius: 14px;
+         background: var(--accent); color: #fff; font-weight: 700; font-size: 18px; text-decoration: none; border: 0; cursor: pointer; }
+  .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .help { margin-top: 22px; padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line);
+          text-align: left; color: var(--ink); font-size: 16px; }
+  .help strong { display: block; margin-bottom: 4px; }
+  .help.flash { animation: flash 1.2s ease-in-out 2; }
+  @keyframes flash { 50% { border-color: #fff; background: rgba(255,255,255,.16); } }
+  .dots { display: inline-block; padding: 0 7px; border-radius: 6px; background: rgba(255,255,255,.18); font-weight: 800; letter-spacing: .08em; }
+  .pointer { position: fixed; top: max(6px, env(safe-area-inset-top)); right: 14px; font-size: 34px; line-height: 1;
+             animation: bob 1s ease-in-out infinite; pointer-events: none; }
+  @keyframes bob { 50% { transform: translate(4px, -6px); } }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { .pointer, .help.flash { animation: none; } }
+</style>
+</head>
+<body>
+<div class="pointer" id="pointer" aria-hidden="true" hidden>↗</div>
+<main>
+  <img class="icon" src="icon.png" alt="" width="96" height="96">
+  <h1 id="title">Forteva</h1>
+  <p id="body"></p>
+  <a class="btn" id="go" href="https://apps.apple.com/app/id6761179177"></a>
+  <div class="help" id="help" hidden>
+    <strong id="helpTitle"></strong>
+    <span id="helpBody"></span>
+  </div>
+</main>
+<script>
+  var APP_ID = '6761179177';
+  // Från App Store Connect: Analytics, Kampanjer (pt). Tomt = ingen kampanjmätning.
+  var PROVIDER_TOKEN = '';
+  // Custom Product Page-id (ppid). Tomt = den vanliga produktsidan.
+  var PRODUCT_PAGE_ID = '';
+
+  var TEXT = {
+    sv: {
+      title: 'Forteva',
+      opening: 'Öppnar App Store…',
+      button: 'Ladda ner i App Store',
+      tiktokTitle: 'Öppna i App Store',
+      tiktokBody: 'TikTok kan inte öppna App Store direkt. Tryck på knappen så öppnas Safari.',
+      tiktokButton: 'Öppna App Store',
+      helpTitle: 'Händer inget?',
+      helpBody: 'Tryck på <span class="dots">⋯</span> uppe till höger och välj <b>Öppna i webbläsare</b>.',
+      otherBody: 'Forteva finns för iPhone. Öppna länken på din iPhone eller sök efter Forteva i App Store.'
+    },
+    en: {
+      title: 'Forteva',
+      opening: 'Opening the App Store…',
+      button: 'Download on the App Store',
+      tiktokTitle: 'Open in the App Store',
+      tiktokBody: 'TikTok can’t open the App Store directly. Tap the button to open Safari.',
+      tiktokButton: 'Open the App Store',
+      helpTitle: 'Nothing happened?',
+      helpBody: 'Tap <span class="dots">⋯</span> in the top right and choose <b>Open in browser</b>.',
+      otherBody: 'Forteva is for iPhone. Open this link on your iPhone or search for Forteva in the App Store.'
+    }
+  };
+
+  var params = new URLSearchParams(location.search);
+  var langParam = (params.get('lang') || '').toLowerCase();
+  var lang = (langParam === 'sv' || langParam === 'en') ? langParam
+    : ((navigator.language || '').toLowerCase().indexOf('sv') === 0 ? 'sv' : 'en');
+  var t = TEXT[lang];
+  document.documentElement.lang = lang;
+
+  // Kampanjnamn: bara bokstäver, siffror, _ och -, högst 40 tecken.
+  var campaign = (params.get('c') || 'bio').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40) || 'bio';
+
+  var q = [];
+  if (PROVIDER_TOKEN) { q.push('pt=' + PROVIDER_TOKEN, 'ct=' + campaign, 'mt=8'); }
+  if (PRODUCT_PAGE_ID) { q.push('ppid=' + PRODUCT_PAGE_ID); }
+  var storeUrl = 'https://apps.apple.com/app/id' + APP_ID + (q.length ? '?' + q.join('&') : '');
+
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var isTikTok = /musical_ly|Bytedance|BytedanceWebview|TikTok|trill/i.test(ua);
+
+  var $ = function (id) { return document.getElementById(id); };
+  var go = $('go');
+  $('title').textContent = t.title;
+  $('helpTitle').textContent = t.helpTitle;
+  $('helpBody').innerHTML = t.helpBody;
+
+  function showHelp() {
+    var help = $('help');
+    help.hidden = false;
+    help.classList.remove('flash'); void help.offsetWidth; help.classList.add('flash');
+    $('pointer').hidden = false;
+  }
+
+  if (isIOS && isTikTok) {
+    // x-safari-https öppnar länken i Safari (iOS 17 och senare). Safari
+    // skickar sedan vidare till App Store. Går det inte syns instruktionen.
+    var safariUrl = 'x-safari-' + storeUrl;
+    $('title').textContent = t.tiktokTitle;
+    $('body').textContent = t.tiktokBody;
+    go.textContent = t.tiktokButton;
+    go.href = safariUrl;
+    go.addEventListener('click', function () {
+      setTimeout(function () { if (!document.hidden) showHelp(); }, 1200);
+    });
+    setTimeout(function () { location.href = safariUrl; }, 300);
+    setTimeout(function () { if (!document.hidden) showHelp(); }, 1800);
+  } else if (isIOS) {
+    $('body').textContent = t.opening;
+    go.textContent = t.button;
+    go.href = storeUrl;
+    location.replace(storeUrl);
+  } else {
+    $('body').textContent = t.otherBody;
+    go.textContent = t.button;
+    go.href = storeUrl;
+  }
+</script>
+</body>
+</html>
