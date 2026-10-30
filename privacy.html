@@ -1,65 +1,183 @@
 <!DOCTYPE html>
+<!--
+  Integritetspolicyn för Forteva. Appen (Inställningar, betalväggen och
+  samtyckesrutan) och App Store Connect länkar hit, så adressen får inte ändras.
+  Källan finns i forteva-app/web/tidblompt/privacy.html. Samma text som
+  forteva-app/web/site/en/privacy/ och /integritet/.
+-->
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Forteva</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 680px;
-      margin: 60px auto;
-      padding: 0 24px 80px;
-      color: #1a1a1a;
-      line-height: 1.7;
-      font-size: 16px;
-    }
-    h1 { font-size: 28px; margin-bottom: 6px; }
-    h2 { font-size: 18px; margin-top: 36px; margin-bottom: 8px; }
-    p, ul { margin: 0 0 16px; }
-    ul { padding-left: 20px; }
-    a { color: #1a1a1a; }
-    .meta { color: #888; font-size: 14px; margin-bottom: 40px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy | Forteva</title>
+<meta name="description" content="What data Forteva collects, why, where it is stored and what rights you have.">
+<meta name="theme-color" content="#02040b">
+<style>
+  :root { --bg-top:#02040b; --bg-mid:#04122e; --bg-bottom:#0a3285; --ink:#fff; --muted:#b9c3e0; --faint:#8b96b8; --line:rgba(255,255,255,.12); --card:rgba(255,255,255,.06); color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background: linear-gradient(180deg,var(--bg-top) 0%,var(--bg-mid) 40%,var(--bg-bottom) 100%) fixed; background-color: var(--bg-top);
+         color: var(--ink); font: 400 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+  main { max-width: 720px; margin: 0 auto; padding: max(32px, env(safe-area-inset-top)) 16px max(64px, env(safe-area-inset-bottom)); }
+  section + section { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line); }
+  h1 { margin: 0 0 6px; font-size: clamp(30px, 5vw, 40px); line-height: 1.15; font-weight: 800; }
+  h2 { margin: 36px 0 8px; font-size: 21px; font-weight: 800; }
+  h3 { margin: 22px 0 6px; font-size: 17px; font-weight: 800; }
+  p, ul { margin: 0 0 14px; color: var(--muted); }
+  li { margin: 0 0 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--ink); }
+  a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: 4px; }
+  .meta { margin: 0 0 8px; color: var(--faint); font-size: 15px; }
+  .switch { margin: 0 0 28px; font-size: 15px; }
+  .table-scroll { overflow-x: auto; margin: 0 0 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  th { color: var(--ink); font-weight: 800; }
+  .contact-card { padding: 20px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+  .contact-card p { margin: 0 0 6px; }
+  @media (max-width: 560px) {
+    table { font-size: 14px; }
+    th, td { padding: 8px 8px 8px 0; hyphens: auto; -webkit-hyphens: auto; }
+    td:first-child, th:first-child { hyphens: manual; -webkit-hyphens: manual; white-space: nowrap; }
+  }
+</style>
 </head>
 <body>
+<main>
+<section id="top" lang="en">
+<h1>Privacy policy</h1>
+<p class="switch"><a href="#sv" lang="sv" hreflang="sv">På svenska</a></p>
+<p class="meta">Forteva · Last updated October 30, 2026</p>
 
-  <h1>Privacy Policy</h1>
-  <p class="meta">Forteva &middot; Last updated: April 3, 2026</p>
+<p>Forteva is developed by <strong>Victor J Tidblom AB</strong> (reg. no. 559441-7676), the data controller. This policy describes what data we collect when you use the app, why, where it is stored and what rights you have.</p>
+<p>In short: we collect what the app needs to work and what helps us make it better. We do not sell data, show ads or track you across other apps.</p>
 
-  <p>Forteva is developed and operated by Victor J Tidblom AB. This privacy policy describes what data we collect, how we use it, and your rights as a user.</p>
+<h2>Data we collect</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Data</th><th>Examples</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Account</td><td>Email address and a random account ID</td><td>Signing in, and keeping your data yours</td></tr>
+    <tr><td>Training profile</td><td>Goal, experience, gym or home, equipment, workouts per week, strength reference</td><td>Choosing a program and calculating your strength profile</td></tr>
+    <tr><td>Training data</td><td>Workouts, exercises, sets, weights, reps, workout ratings and notes, your own templates and exercises</td><td>This is the app itself: history, records and strength profile</td></tr>
+    <tr><td>Body weight</td><td>Weight check-ins, and your weight in Apple Health if you give the app access</td><td>Tracking your weight over time and measuring strength relative to body weight</td></tr>
+    <tr><td>Purchases</td><td>Whether you have a subscription, and which one</td><td>Giving you access to the app. We never see card details; Apple handles them</td></tr>
+    <tr><td>Usage</td><td>Which screens and features are used, app version, phone model, approximate country and city from your IP address</td><td>Understanding what works and improving the app</td></tr>
+    <tr><td>Error reports</td><td>The type of error and where in the code it happened</td><td>Finding and fixing bugs. Reports are stripped of weights and email addresses before they are sent</td></tr>
+  </tbody>
+</table></div>
 
-  <h2>Data we collect</h2>
-  <p>We may collect the following types of information when you use Forteva:</p>
-  <ul>
-    <li>Account and contact information (e-mail address)</li>
-    <li>Profile information (fitness goals, experience level, training preferences)</li>
-    <li>Training and progress data (workout sessions, sets, weights, body measurements)</li>
-    <li>Technical information (device type, OS version, app usage data)</li>
-    <li>Purchase and subscription status</li>
-  </ul>
+<h3>Apple Health</h3>
+<p>If you give access, the app reads your step count and your body weight from Apple Health. Steps are only shown in the app and never leave your phone. Your weight can be saved as a check-in. The app writes nothing to Apple Health. Data from Apple Health is never used for advertising or analytics and is not shared with anyone. You can remove access at any time in the Health app on your iPhone.</p>
 
-  <h2>How we use your data</h2>
-  <p>Your data is used to:</p>
-  <ul>
-    <li>Provide and operate the app and its features</li>
-    <li>Personalise and improve your experience</li>
-    <li>Manage premium and subscription access</li>
-    <li>Improve functionality and stability</li>
-  </ul>
+<h3>Marketing emails</h3>
+<p>We only send marketing by email if you have explicitly agreed. Every such email has an unsubscribe link, and you can change your choice in the app.</p>
 
-  <h2>Third-party services</h2>
-  <p>We use third-party services to operate the app, including services for authentication, data hosting, analytics, and subscription management. These services may process personal data on our behalf in accordance with their own privacy policies. We do not sell your personal data to third parties.</p>
+<h2>Legal basis</h2>
+<ul>
+  <li><strong>Contract:</strong> account, training profile, training data, body weight and purchases are needed to provide the app to you.</li>
+  <li><strong>Legitimate interest:</strong> usage data and error reports, to keep the app working and make it better.</li>
+  <li><strong>Consent:</strong> access to Apple Health and marketing emails. You can withdraw your consent at any time.</li>
+</ul>
 
-  <h2>Your rights</h2>
-  <p>You have the right to access, correct, or request deletion of your personal data. To exercise these rights, contact us at the address below.</p>
+<h2>Providers that process data for us</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Provider</th><th>Does</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td>Supabase</td><td>Database and sign-in</td><td>EU (Stockholm)</td></tr>
+    <tr><td>PostHog</td><td>Usage data and error reports</td><td>EU</td></tr>
+    <tr><td>RevenueCat</td><td>Subscription status</td><td>USA</td></tr>
+    <tr><td>Apple</td><td>Purchases, payment and Sign in with Apple</td><td>Under Apple's terms</td></tr>
+    <tr><td>Expo</td><td>Delivering app updates</td><td>USA</td></tr>
+  </tbody>
+</table></div>
+<p>Providers only process the data on our behalf and under contract. Transfers to the USA rely on the European Commission's standard contractual clauses or the EU–US Data Privacy Framework.</p>
 
-  <h2>Contact</h2>
-  <p>
-    Victor J Tidblom AB<br />
-    <a href="mailto:tidblompt@gmail.com">tidblompt@gmail.com</a><br />
-    <a href="https://tidblompt.com">https://tidblompt.com</a>
-  </p>
+<h2>How long we keep data</h2>
+<p>Your data is kept for as long as you have an account. If you delete your account in the app, under <strong>Settings</strong> and <strong>Delete account</strong>, your account, profile, training history and check-ins are permanently removed. Usage data in PostHog is linked to your account ID, not to your name or email. If you want that deleted too, email us.</p>
+<p>Purchase records that Swedish bookkeeping law requires us to keep are kept for as long as the law requires.</p>
 
+<h2>Your rights</h2>
+<p>You have the right to know what data we hold about you, to have errors corrected, to have your data deleted, to receive it in a machine-readable format and to object to processing based on legitimate interest. Email us to use your rights. We reply within one month.</p>
+<p>If you are not satisfied with how we handle your data, you can complain to the Swedish Authority for Privacy Protection, <a href="https://www.imy.se/en/">imy.se</a>, or to the data protection authority where you live.</p>
+
+<h2>Changes</h2>
+<p>If the policy changes in a way that affects you, we will tell you in the app or by email. The date at the top shows the latest change.</p>
+
+<h2>Contact</h2>
+<div class="contact-card">
+  <p><strong>Victor J Tidblom AB</strong></p>
+  <p>Kyrkvägen 1C, 435 35 Mölnlycke, Sweden</p>
+  <p><a href="mailto:tidblompt@gmail.com">tidblompt@gmail.com</a></p>
+</div>
+</section>
+
+<section id="sv" lang="sv">
+<h1 id="sv-title">Integritetspolicy</h1>
+<p class="switch"><a href="#top" lang="en">In English</a></p>
+<p class="meta">Forteva · Senast uppdaterad 30 oktober 2026</p>
+
+<p>Forteva utvecklas av <strong>Victor J Tidblom AB</strong> (org.nr 559441-7676), som är personuppgiftsansvarig. Här står vilka uppgifter vi samlar in när du använder appen, varför, var de lagras och vilka rättigheter du har.</p>
+<p>Kort sagt: vi samlar in det som behövs för att appen ska fungera och för att vi ska kunna göra den bättre. Vi säljer inga uppgifter, visar ingen reklam och spårar dig inte i andra appar.</p>
+
+<h2>Uppgifter vi samlar in</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Uppgift</th><th>Exempel</th><th>Varför</th></tr></thead>
+  <tbody>
+    <tr><td>Konto</td><td>E-postadress och ett slumpat konto-id</td><td>Inloggning och för att dina uppgifter ska höra till dig</td></tr>
+    <tr><td>Träningsprofil</td><td>Mål, erfarenhet, gym eller hemma, utrustning, antal pass i veckan, styrkereferens</td><td>Välja program och räkna ut styrkeprofilen</td></tr>
+    <tr><td>Träningsdata</td><td>Pass, övningar, set, vikter, reps, betyg och anteckningar på pass, egna mallar och övningar</td><td>Det är själva appen: historik, rekord och styrkeprofil</td></tr>
+    <tr><td>Kroppsvikt</td><td>Viktincheckningar, och vikten i Apple Hälsa om du gett appen tillgång</td><td>Följa vikten över tid och räkna styrka i förhållande till kroppsvikt</td></tr>
+    <tr><td>Köp</td><td>Om du har en prenumeration och vilken</td><td>Ge tillgång till appen. Vi ser aldrig kortuppgifter, de hanteras av Apple</td></tr>
+    <tr><td>Användning</td><td>Vilka skärmar och funktioner som används, appversion, telefonmodell, ungefärligt land och stad utifrån IP-adressen</td><td>Förstå vad som fungerar och förbättra appen</td></tr>
+    <tr><td>Felrapporter</td><td>Typ av fel och var i koden det uppstod</td><td>Hitta och rätta fel. Rapporterna tvättas från vikter och e-postadresser innan de skickas</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Apple Hälsa</h3>
+<p>Om du ger tillgång läser appen ditt antal steg och din kroppsvikt ur Apple Hälsa. Stegen visas bara i appen och lämnar aldrig telefonen. Vikten kan sparas som en incheckning. Appen skriver ingenting till Apple Hälsa. Uppgifter ur Apple Hälsa används aldrig för reklam eller analys och delas inte med någon. Du kan ta bort tillgången när som helst i Hälsa-appen på din iPhone.</p>
+
+<h3>E-post med erbjudanden</h3>
+<p>Vi skickar bara marknadsföring via e-post om du uttryckligen har sagt ja. Varje sådant mejl har en länk för att avregistrera dig, och du kan ändra ditt val i appen.</p>
+
+<h2>Rättslig grund</h2>
+<ul>
+  <li><strong>Avtal:</strong> konto, träningsprofil, träningsdata, kroppsvikt och köp behövs för att leverera appen till dig.</li>
+  <li><strong>Berättigat intresse:</strong> användningsdata och felrapporter, för att hålla appen fungerande och göra den bättre.</li>
+  <li><strong>Samtycke:</strong> tillgång till Apple Hälsa och e-post med erbjudanden. Du kan ta tillbaka ditt samtycke när som helst.</li>
+</ul>
+
+<h2>Leverantörer som behandlar uppgifter åt oss</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>Leverantör</th><th>Gör</th><th>Var</th></tr></thead>
+  <tbody>
+    <tr><td>Supabase</td><td>Databas och inloggning</td><td>EU (Stockholm)</td></tr>
+    <tr><td>PostHog</td><td>Användningsdata och felrapporter</td><td>EU</td></tr>
+    <tr><td>RevenueCat</td><td>Prenumerationsstatus</td><td>USA</td></tr>
+    <tr><td>Apple</td><td>Köp, betalning och inloggning med Apple</td><td>Enligt Apples villkor</td></tr>
+    <tr><td>Expo</td><td>Leverans av appuppdateringar</td><td>USA</td></tr>
+  </tbody>
+</table></div>
+<p>Leverantörerna behandlar bara uppgifterna för vår räkning och enligt avtal. När uppgifter överförs till USA sker det med EU-kommissionens standardavtalsklausuler eller inom ramen för EU–USA Data Privacy Framework.</p>
+
+<h2>Hur länge vi sparar uppgifterna</h2>
+<p>Dina uppgifter sparas så länge du har ett konto. Raderar du kontot i appen, under <strong>Inställningar</strong> och <strong>Radera konto</strong>, tas konto, profil, träningshistorik och incheckningar bort permanent. Användningsdata hos PostHog är kopplad till ditt konto-id, inte till namn eller e-post. Vill du att även den raderas, mejla oss.</p>
+<p>Uppgifter om köp som vi måste spara enligt bokföringslagen sparas så länge lagen kräver.</p>
+
+<h2>Dina rättigheter</h2>
+<p>Du har rätt att få veta vilka uppgifter vi har om dig, få fel rättade, få uppgifterna raderade, få ut dem i ett maskinläsbart format och invända mot behandling som bygger på berättigat intresse. Mejla oss för att använda dina rättigheter. Vi svarar inom en månad.</p>
+<p>Är du inte nöjd med hur vi hanterar dina uppgifter kan du klaga hos Integritetsskyddsmyndigheten, <a href="https://www.imy.se">imy.se</a>.</p>
+
+<h2>Ändringar</h2>
+<p>Ändras policyn på ett sätt som påverkar dig berättar vi det i appen eller via e-post. Datumet överst visar senaste ändringen.</p>
+
+<h2>Kontakt</h2>
+<div class="contact-card">
+  <p><strong>Victor J Tidblom AB</strong></p>
+  <p>Kyrkvägen 1C, 435 35 Mölnlycke</p>
+  <p><a href="mailto:tidblompt@gmail.com">tidblompt@gmail.com</a></p>
+</div>
+</section>
+</main>
 </body>
 </html>
